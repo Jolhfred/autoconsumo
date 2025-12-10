@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AUTOCÖNSUMO - Energía Eléctrica y Solar</title>
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
     <style>
+        /* ==================== RESET Y VARIABLES ==================== */
         * {
             margin: 0;
             padding: 0;
@@ -65,10 +67,9 @@
             animation: none;
         }
 
-        .whatsapp-btn svg {
-            width: 35px;
-            height: 35px;
-            fill: white;
+        .whatsapp-btn i {
+            font-size: 35px;
+            color: white;
         }
 
         /* ==================== NAVBAR ==================== */
@@ -79,18 +80,19 @@
             background: white;
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
             z-index: 1000;
+            padding: 1rem 0;
         }
 
         .navbar-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .logo-img {
+        .logo {
             height: 50px;
             width: auto;
             animation: float 3s ease-in-out infinite;
@@ -113,6 +115,7 @@
             font-weight: 500;
             position: relative;
             transition: var(--transition);
+            cursor: pointer;
         }
 
         .nav-links a::after {
@@ -134,13 +137,13 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
+            gap: 6px;
         }
 
         .hamburger span {
             width: 25px;
             height: 3px;
             background-color: var(--text-dark);
-            margin: 5px 0;
             transition: var(--transition);
         }
 
@@ -223,6 +226,8 @@
             transition: var(--transition);
             box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3);
             animation: slideInLeft 0.8s ease 0.2s both;
+            text-decoration: none;
+            display: inline-block;
         }
 
         .cta-button:hover {
@@ -330,45 +335,10 @@
             transform: scale(1.05);
         }
 
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(34, 197, 94, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
         .service-card:hover {
             border-color: var(--primary-green);
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(34, 197, 94, 0.15);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            display: inline-block;
-            animation: bounce 2s infinite;
-        }
-
-        .solar-icon {
-            animation-delay: 0s;
-        }
-
-        .electric-icon {
-            animation-delay: 0.2s;
-        }
-
-        .maintenance-icon {
-            animation-delay: 0.4s;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
         }
 
         .service-card h3 {
@@ -481,18 +451,6 @@
             max-width: 1200px;
             margin: 0 auto;
             position: relative;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 50px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary-green), var(--primary-blue));
-            opacity: 0.3;
-            z-index: -1;
         }
 
         .timeline-item {
@@ -735,12 +693,11 @@
             outline: none;
             border-color: var(--primary-green);
             background: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
         }
 
-        .submit-btn {
+        .contacto-form button {
             padding: 1rem 2rem;
-            background: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-blue));
             color: white;
             border: none;
             border-radius: var(--border-radius);
@@ -748,12 +705,12 @@
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
-            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3);
+            margin-top: 1rem;
         }
 
-        .submit-btn:hover {
+        .contacto-form button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(34, 197, 94, 0.4);
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3);
         }
 
         .contacto-info {
@@ -762,167 +719,145 @@
             gap: 2rem;
         }
 
-        .info-item h4 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
+        .contacto-info h3 {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
         }
 
-        .info-item p {
-            color: rgba(255, 255, 255, 0.7);
+        .contacto-info p {
+            opacity: 0.9;
+            line-height: 1.6;
         }
 
         /* ==================== FOOTER ==================== */
         .footer {
-            background: #0f172a;
-            padding: 2rem;
+            background: var(--dark-bg);
+            color: white;
+            padding: 3rem 2rem 1rem;
             text-align: center;
-            color: rgba(255, 255, 255, 0.6);
         }
 
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .social-links {
-            margin-top: 1rem;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-        }
-
-        .social-icon {
-            color: rgba(255, 255, 255, 0.6);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .social-icon:hover {
-            color: var(--primary-green);
+        .footer p {
+            opacity: 0.7;
         }
 
         /* ==================== RESPONSIVE ==================== */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
             .hamburger {
                 display: flex;
             }
 
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                gap: 0;
+                padding: 1rem 0;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 1rem 2rem;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            }
+
             .hero {
-                flex-direction: column-reverse;
                 margin-top: 100px;
+                flex-direction: column;
             }
 
             .hero-title {
                 font-size: 2.5rem;
             }
 
-            .hero-subtitle {
-                font-size: 1.1rem;
+            .hero-animation {
+                height: 300px;
+            }
+
+            .servicios-grid,
+            .beneficios-container,
+            .timeline,
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ubicacion-container,
+            .contacto-container {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.8rem;
             }
 
             .section-title {
                 font-size: 2rem;
-            }
-
-            .servicios-grid,
-            .beneficios-container {
-                grid-template-columns: 1fr;
-            }
-
-            .timeline::before {
-                display: none;
-            }
-
-            .contacto-container {
-                grid-template-columns: 1fr;
             }
 
             .stats {
                 grid-template-columns: 1fr;
             }
 
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .ubicacion-container {
-                grid-template-columns: 1fr;
-            }
-
             .whatsapp-btn {
                 width: 60px;
                 height: 60px;
-                bottom: 20px;
-                right: 20px;
             }
 
-            .whatsapp-btn svg {
-                width: 30px;
-                height: 30px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .navbar-container {
-                padding: 1rem;
-            }
-
-            .hero-title {
-                font-size: 2rem;
-            }
-
-            .section-title {
-                font-size: 1.5rem;
-                margin-bottom: 2rem;
-            }
-
-            .servicios {
-                padding: 3rem 1rem;
-            }
-
-            .stat-number {
-                font-size: 2rem;
+            .whatsapp-btn i {
+                font-size: 28px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Botón WhatsApp -->
-    <a href="https://wa.me/51XXXXXXXXX" target="_blank" class="whatsapp-btn" title="Contactar por WhatsApp">
-        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.272-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a6.963 6.963 0 0 0-7.008 6.962 6.961 6.961 0 0 0 1.173 3.751L3.06 20.16l3.992-1.048a6.953 6.953 0 0 0 3.326.789h.004c3.859 0 6.998-3.14 6.998-6.997a6.96 6.96 0 0 0-6.999-6.952zm0-2.381c4.279 0 7.761 3.484 7.761 7.763 0 4.28-3.482 7.764-7.761 7.764a7.737 7.737 0 0 1-3.7-.921l-.265-.141-2.755.723.738-2.693-.15-.24a7.759 7.759 0 0 1-1.047-4.091c0-4.279 3.484-7.762 7.761-7.762" fill="white"/></svg>
+    <!-- BOTÓN WHATSAPP FLOTANTE -->
+    <a href="https://wa.me/51XXXXXXXXX?text=Hola%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios" target="_blank" class="whatsapp-btn" title="Chatea con nosotros">
+        <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Navbar -->
-    <nav class="navbar">
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
         <div class="navbar-container">
-            <div class="logo">
-                <img src="/images/image.png" alt="AUTOCÖNSUMO Logo" class="logo-img">
-            </div>
-            <ul class="nav-links">
+            <img src="/images/image.png" alt="AUTOCÖNSUMO Logo" class="logo">
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#servicios">Servicios</a></li>
                 <li><a href="#beneficios">Beneficios</a></li>
+                <li><a href="#proceso">Proceso</a></li>
+                <li><a href="#galeria">Galería</a></li>
                 <li><a href="#ubicacion">Ubicación</a></li>
+                <li><a href="#faq">Preguntas</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
-            <div class="hamburger">
+            <button class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="inicio" class="hero">
+    <!-- HERO SECTION -->
+    <section class="hero" id="inicio">
         <div class="hero-content">
             <h1 class="hero-title">Energía Limpia para tu Futuro</h1>
-            <p class="hero-subtitle">Soluciones solares y eléctricas innovadoras para tu hogar y negocio</p>
-            <button class="cta-button">Solicita tu Consulta</button>
+            <p class="hero-subtitle">Soluciones de energía eléctrica y solar profesionales para tu hogar y negocio</p>
+            <a href="#contacto" class="cta-button">Contáctanos Hoy</a>
         </div>
         <div class="hero-animation">
             <div class="sun"></div>
@@ -930,140 +865,148 @@
         </div>
     </section>
 
-    <!-- Servicios -->
-    <section id="servicios" class="servicios">
+    <!-- SERVICIOS -->
+    <section class="servicios" id="servicios">
         <h2 class="section-title">Nuestros Servicios</h2>
         <div class="servicios-grid">
             <div class="service-card">
-                <img src="https://images.unsplash.com/photo-1508424757607-4ae3a8466ae9?w=400&h=200&fit=crop" alt="Energía Solar">
-                <div class="service-icon solar-icon">☀️</div>
-                <h3>Energía Solar</h3>
-                <p>Instalación de paneles solares para hogares y negocios con máxima eficiencia y rendimiento</p>
+                <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&h=300&fit=crop" alt="Instalación Solar">
+                <h3>Instalación Solar</h3>
+                <p>Instalación completa de paneles solares de alta calidad con garantía de 25 años</p>
             </div>
             <div class="service-card">
-                <img src="https://images.unsplash.com/photo-1513096137-e50310cded33?w=400&h=200&fit=crop" alt="Instalaciones Eléctricas">
-                <div class="service-icon electric-icon">⚡</div>
-                <h3>Instalaciones Eléctricas</h3>
-                <p>Servicios profesionales de instalación y mantenimiento eléctrico con certificación oficial</p>
+                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=300&fit=crop" alt="Auditoría Eléctrica">
+                <h3>Auditoría Eléctrica</h3>
+                <p>Análisis profesional de tu consumo energético para optimizar gastos</p>
             </div>
             <div class="service-card">
-                <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&h=200&fit=crop" alt="Mantenimiento">
-                <div class="service-icon maintenance-icon">🔧</div>
+                <img src="https://images.unsplash.com/photo-1574208622198-40dee67b75ba?w=500&h=300&fit=crop" alt="Mantenimiento">
                 <h3>Mantenimiento Preventivo</h3>
-                <p>Servicios de revisión y mantenimiento preventivo para optimizar el rendimiento del sistema</p>
+                <p>Servicios de mantenimiento periódico para máximo rendimiento</p>
             </div>
         </div>
     </section>
 
-    <!-- Beneficios -->
-    <section id="beneficios" class="beneficios">
-        <h2 class="section-title">¿Por qué elegirnos?</h2>
+    <!-- BENEFICIOS -->
+    <section class="beneficios" id="beneficios">
+        <h2 class="section-title">¿Por Qué Elegirnos?</h2>
         <div class="beneficios-container">
             <div class="beneficio">
-                <div class="beneficio-numero">01</div>
-                <h3>Ahorro Energético</h3>
-                <p>Reduce tu factura eléctrica hasta un 80% con nuestras soluciones profesionales</p>
+                <div class="beneficio-numero">+15</div>
+                <h3>Años de Experiencia</h3>
+                <p>Más de una década y media brindando soluciones energéticas confiables</p>
             </div>
             <div class="beneficio">
-                <div class="beneficio-numero">02</div>
-                <h3>Experiencia Comprobada</h3>
-                <p>Más de 10 años trabajando en el sector de energías renovables con resultados garantizados</p>
+                <div class="beneficio-numero">500+</div>
+                <h3>Clientes Satisfechos</h3>
+                <p>Miles de hogares y negocios confían en nuestros servicios</p>
             </div>
             <div class="beneficio">
-                <div class="beneficio-numero">03</div>
-                <h3>Garantía Completa</h3>
-                <p>Garantía de 20 años en paneles solares y 10 años en instalación profesional</p>
+                <div class="beneficio-numero">100%</div>
+                <h3>Garantía Certificada</h3>
+                <p>Todos nuestros trabajos incluyen garantía de calidad y certificación profesional</p>
             </div>
-            <div class="beneficio">
-                <div class="beneficio-numero">04</div>
-                <h3>Asesoramiento Personalizado</h3>
-                <p>Consultores expertos adaptados a tus necesidades específicas y presupuesto</p>
+        </div>
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number" data-count="2500">0</div>
+                <p>kWh Ahorrados Anuales</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-count="98">0</div>
+                <p>% Satisfacción Cliente</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-count="48">0</div>
+                <p>Horas Respuesta Máx</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-count="15">0</div>
+                <p>Años Garantía Paneles</p>
             </div>
         </div>
     </section>
 
-    <!-- Estadísticas -->
-    <section class="stats">
-        <div class="stat-card">
-            <h3 class="stat-number">500+</h3>
-            <p>Clientes Satisfechos</p>
-        </div>
-        <div class="stat-card">
-            <h3 class="stat-number">2000+</h3>
-            <p>Paneles Instalados</p>
-        </div>
-        <div class="stat-card">
-            <h3 class="stat-number">10K+</h3>
-            <p>MWh Generados</p>
-        </div>
-    </section>
-
-    <!-- Proceso -->
-    <section class="proceso">
+    <!-- PROCESO -->
+    <section class="proceso" id="proceso">
         <h2 class="section-title">Nuestro Proceso</h2>
         <div class="timeline">
             <div class="timeline-item">
-                <div class="timeline-dot">01</div>
-                <h3>Evaluación</h3>
-                <p>Analizamos tu consumo energético y necesidades específicas</p>
+                <div class="timeline-dot">1</div>
+                <h3>Consulta Inicial</h3>
+                <p>Evaluamos tu situación energética actual sin costo</p>
             </div>
             <div class="timeline-item">
-                <div class="timeline-dot">02</div>
-                <h3>Diseño</h3>
-                <p>Creamos un plan personalizado optimizado para tu caso</p>
+                <div class="timeline-dot">2</div>
+                <h3>Análisis Detallado</h3>
+                <p>Realizamos un estudio técnico completo de tu inmueble</p>
             </div>
             <div class="timeline-item">
-                <div class="timeline-dot">03</div>
-                <h3>Instalación</h3>
-                <p>Instalamos tu sistema con profesionales altamente certificados</p>
+                <div class="timeline-dot">3</div>
+                <h3>Propuesta Personalizada</h3>
+                <p>Presentamos opciones adaptadas a tu presupuesto</p>
             </div>
             <div class="timeline-item">
-                <div class="timeline-dot">04</div>
-                <h3>Monitoreo</h3>
-                <p>Realizamos seguimiento continuo del rendimiento y resultados</p>
+                <div class="timeline-dot">4</div>
+                <h3>Instalación Profesional</h3>
+                <p>Instalación por técnicos certificados y seguros</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot">5</div>
+                <h3>Mantenimiento</h3>
+                <p>Seguimiento continuo y servicio técnico permanente</p>
             </div>
         </div>
     </section>
 
-    <!-- Galería -->
-    <section class="galeria">
-        <h2 class="section-title">Proyectos Realizados</h2>
+    <!-- GALERÍA -->
+    <section class="galeria" id="galeria">
+        <h2 class="section-title">Galería de Proyectos</h2>
         <div class="gallery-grid">
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1508833801849-1f0c75f89fa5?w=400&h=300&fit=crop" alt="Instalación Solar 1">
+                <img src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=400&h=300&fit=crop" alt="Proyecto 1">
             </div>
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1464207687429-7505649dae38?w=400&h=300&fit=crop" alt="Instalación Solar 2">
+                <img src="https://images.unsplash.com/photo-1514632776622-658c47fe1da1?w=400&h=300&fit=crop" alt="Proyecto 2">
             </div>
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1509391366360-2e938d440220?w=400&h=300&fit=crop" alt="Instalación Solar 3">
+                <img src="https://images.unsplash.com/photo-1559027615-cd2628902d4a?w=400&h=300&fit=crop" alt="Proyecto 3">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop" alt="Proyecto 4">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=400&h=300&fit=crop" alt="Proyecto 5">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop" alt="Proyecto 6">
             </div>
         </div>
     </section>
 
-    <!-- Ubicación con Google Maps -->
-    <section id="ubicacion" class="ubicacion">
+    <!-- UBICACIÓN -->
+    <section class="ubicacion" id="ubicacion">
         <h2 class="section-title">Nuestra Ubicación</h2>
         <div class="ubicacion-container">
             <div class="mapa-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.8265662969535!2d-77.04054!3d-12.047378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8b9d9d9d9d9%3A0x9d9d9d9d9d9d9d9d!2sLima%2C%20Per%C3%BA!5e0!3m2!1ses!2upe!4v1234567890" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3902.5484846789336!2d-77.02848!3d-12.046374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8c8c8c8c8c1%3A0x1234567890abcdef!2sLima%2C%20Peru!5e0!3m2!1ses!2sus!4v1234567890" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <div class="ubicacion-info">
-                <h3>Encuentra Nuestra Oficina</h3>
+                <h3>Contáctanos</h3>
                 <div class="info-item">
                     <h4>📍 Dirección</h4>
-                    <p>Calle Principal 123, Lima, Perú</p>
+                    <p>Av. Principal 123, Lima, Perú</p>
                 </div>
                 <div class="info-item">
                     <h4>📞 Teléfono</h4>
-                    <p>+51 1 XXX XXXX</p>
+                    <p>+51 (1) 2345-6789</p>
                 </div>
                 <div class="info-item">
                     <h4>📧 Email</h4>
-                    <p>info@autoconsumo.pe</p>
+                    <p>contacto@autoconsumo.com</p>
                 </div>
                 <div class="info-item">
-                    <h4>🕐 Horario</h4>
+                    <h4>🕒 Horarios</h4>
                     <p>Lunes a Viernes: 9:00 AM - 6:00 PM<br>Sábado: 10:00 AM - 2:00 PM</p>
                 </div>
             </div>
@@ -1071,167 +1014,168 @@
     </section>
 
     <!-- FAQ -->
-    <section class="faq">
+    <section class="faq" id="faq">
         <h2 class="section-title">Preguntas Frecuentes</h2>
         <div class="faq-container">
             <div class="faq-item">
                 <button class="faq-question">¿Cuánto cuesta una instalación solar?</button>
                 <div class="faq-answer">
-                    <p>El costo varía según el tamaño de tu sistema y consumo. Ofrecemos consultas gratuitas para darte un presupuesto exacto personalizado a tu caso.</p>
+                    <p>El costo varía según el tamaño del sistema. Ofrecemos consultas gratuitas para brindarte un presupuesto exacto basado en tus necesidades específicas.</p>
                 </div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">¿Cuánto tiempo dura la instalación?</button>
+                <button class="faq-question">¿Cuál es la vida útil de los paneles solares?</button>
                 <div class="faq-answer">
-                    <p>Generalmente entre 1-3 días dependiendo de la complejidad del proyecto. Nuestro equipo trabaja de forma ágil y eficiente.</p>
+                    <p>Los paneles solares modernos tienen una vida útil de 25-30 años con un mantenimiento adecuado. Nuestros paneles incluyen garantía de 25 años.</p>
                 </div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">¿Necesito permisos especiales?</button>
+                <button class="faq-question">¿Qué sucede en días nublados?</button>
                 <div class="faq-answer">
-                    <p>Nos encargamos de toda la tramitología y permisos necesarios. ¡Tú no tienes que preocuparte de nada!</p>
+                    <p>Los paneles solares funcionan incluso en días nublados, aunque con menor eficiencia. Además, puedes conectarte a la red pública como respaldo.</p>
                 </div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">¿Qué mantenimiento requieren los paneles?</button>
+                <button class="faq-question">¿Requiere mantenimiento especial?</button>
                 <div class="faq-answer">
-                    <p>El mantenimiento es mínimo. Recomendamos limpiezas semestrales y revisiones anuales profesionales para asegurar máximo rendimiento.</p>
+                    <p>El mantenimiento es mínimo. Recomendamos limpiezas periódicas y revisiones técnicas anuales. Ofrecemos planes de mantenimiento accesibles.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">¿Puedo ampliar mi sistema más adelante?</button>
+                <div class="faq-answer">
+                    <p>Sí, los sistemas solares son escalables. Puedes añadir más paneles cuando lo necesites. Nuestros técnicos te asesorarán sobre las mejores opciones.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contacto -->
-    <section id="contacto" class="contacto">
+    <!-- CONTACTO -->
+    <section class="contacto" id="contacto">
         <h2 class="section-title">Ponte en Contacto</h2>
         <div class="contacto-container">
-            <form class="contacto-form">
+            <form class="contacto-form" id="contactoForm">
                 <input type="text" placeholder="Tu nombre" required>
                 <input type="email" placeholder="Tu email" required>
                 <input type="tel" placeholder="Tu teléfono" required>
-                <textarea placeholder="Cuéntanos tu proyecto" rows="5" required></textarea>
-                <button type="submit" class="submit-btn">Enviar Mensaje</button>
+                <textarea placeholder="Tu mensaje" rows="5" required></textarea>
+                <button type="submit">Enviar Mensaje</button>
             </form>
             <div class="contacto-info">
-                <div class="info-item">
-                    <h4>📍 Ubicación Principal</h4>
-                    <p>Lima, Perú</p>
-                </div>
-                <div class="info-item">
-                    <h4>📞 Teléfono</h4>
-                    <p>+51 1 XXX XXXX</p>
-                </div>
-                <div class="info-item">
-                    <h4>📱 WhatsApp</h4>
-                    <p>+51 XXX XXX XXX</p>
-                </div>
-                <div class="info-item">
-                    <h4>📧 Email</h4>
-                    <p>info@autoconsumo.pe</p>
-                </div>
-                <div class="info-item">
-                    <h4>🕐 Horario de Atención</h4>
-                    <p>Lunes a Viernes: 9:00 AM - 6:00 PM<br>Sábado: 10:00 AM - 2:00 PM</p>
-                </div>
+                <h3>Información de Contacto</h3>
+                <p>Estamos aquí para ayudarte. No dudes en contactarnos para consultas, presupuestos o cualquier pregunta sobre nuestros servicios.</p>
+                <p><strong>📞 Teléfono:</strong> +51 (1) 2345-6789</p>
+                <p><strong>📧 Email:</strong> contacto@autoconsumo.com</p>
+                <p><strong>🕒 Disponible:</strong> Lunes a Sábado</p>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer class="footer">
-        <div class="footer-content">
-            <p>&copy; 2025 AUTOCÖNSUMO. Todos los derechos reservados.</p>
-            <div class="social-links">
-                <a href="#" class="social-icon">Facebook</a>
-                <a href="#" class="social-icon">Instagram</a>
-                <a href="#" class="social-icon">LinkedIn</a>
-            </div>
-        </div>
+        <p>&copy; 2025 AUTOCÖNSUMO - Energía Eléctrica y Solar. Todos los derechos reservados.</p>
     </footer>
 
     <script>
-        // Navbar Mobile Menu
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
+        // ==================== MENÚ HAMBURGUESA ====================
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
 
-        hamburger?.addEventListener('click', () => {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-            hamburger.classList.toggle('active');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
         });
 
-        // Cerrar menú al hacer click en un enlace
+        // Cerrar menú al hacer clic en un enlace
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
-                navLinks.style.display = 'none';
-                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
             });
         });
 
-        // FAQ Accordions
-        document.querySelectorAll('.faq-question').forEach(button => {
-            button.addEventListener('click', () => {
-                const item = button.parentElement;
-                item.classList.toggle('active');
-                
-                // Cerrar otros items
-                document.querySelectorAll('.faq-item').forEach(otherItem => {
-                    if (otherItem !== item && otherItem.classList.contains('active')) {
-                        otherItem.classList.remove('active');
+        // ==================== SCROLL SUAVE A SECCIONES ====================
+        document.querySelectorAll('.nav-links a, .cta-button').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
-                });
-            });
-        });
-
-        // Formulario de contacto
-        const contactForm = document.querySelector('.contacto-form');
-        if (contactForm) {
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                alert('¡Gracias por tu mensaje! Nos pondremos en contacto pronto.');
-                contactForm.reset();
-            });
-        }
-
-        // CTA Button
-        const ctaButton = document.querySelector('.cta-button');
-        if (ctaButton) {
-            ctaButton.addEventListener('click', () => {
-                document.querySelector('#contacto').scrollIntoView({ behavior: 'smooth' });
-            });
-        }
-
-        // Animaciones en scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
                 }
             });
-        }, observerOptions);
-
-        document.querySelectorAll('.service-card, .beneficio, .timeline-item, .gallery-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'all 0.6s ease';
-            observer.observe(el);
         });
 
-        // Efecto parallax en hero
+        // ==================== ANIMACIÓN DE CONTADORES ====================
+        function animateCounter() {
+            const counters = document.querySelectorAll('[data-count]');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                let current = 0;
+                const increment = target / 50;
+                
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+                
+                updateCounter();
+            });
+        }
+
+        // Observador para ejecutar animación cuando se ve la sección
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.target.classList.contains('beneficios')) {
+                    animateCounter();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        const beneficiosSection = document.querySelector('.beneficios');
+        if (beneficiosSection) {
+            observer.observe(beneficiosSection);
+        }
+
+        // ==================== FAQ ACORDEÓN ====================
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                
+                // Cerrar otros items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    if (item !== faqItem) {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                // Toggle actual
+                faqItem.classList.toggle('active');
+            });
+        });
+
+        // ==================== VALIDACIÓN FORMULARIO ====================
+        document.getElementById('contactoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Aquí puedes añadir lógica para enviar el formulario
+            alert('¡Gracias por tu mensaje! Te contactaremos pronto.');
+            this.reset();
+        });
+
+        // ==================== EFECTO PARALLAX EN HERO ====================
         window.addEventListener('scroll', () => {
             const hero = document.querySelector('.hero');
-            if (hero) {
-                const scrolled = window.pageYOffset;
-                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
+            const scrollPosition = window.scrollY;
+            hero.style.transform = `translateY(${scrollPosition * 0.3}px)`;
         });
-
-        console.log('✨ AUTOCÖNSUMO - Página cargada correctamente');
     </script>
 </body>
 </html>
