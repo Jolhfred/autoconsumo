@@ -80,7 +80,7 @@
             background: white;
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
             z-index: 1000;
-            padding: 0.5rem 0;
+            padding: 1rem 0;
         }
 
         .navbar-container {
@@ -93,7 +93,7 @@
         }
 
         .logo {
-            height: 70px;
+            height: 50px;
             width: auto;
             animation: float 3s ease-in-out infinite;
         }
@@ -438,6 +438,12 @@
             opacity: 0.9;
         }
 
+        /* ==================== PROCESO ==================== */
+        .proceso {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
         .timeline {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -735,185 +741,6 @@
             opacity: 0.7;
         }
 
-        /* ==================== CATÁLOGO DE PRODUCTOS ==================== */
-        .productos {
-            padding: 80px 5%;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-        }
-
-        .productos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .producto-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .producto-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(34, 139, 34, 0.2);
-        }
-
-        .producto-imagen {
-            width: 100%;
-            height: 250px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .producto-imagen img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .producto-card:hover .producto-imagen img {
-            transform: scale(1.1);
-        }
-
-        .producto-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: linear-gradient(135deg, #228B22, #32CD32);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        .producto-contenido {
-            padding: 25px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .producto-categoria {
-            color: #2196F3;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-        }
-
-        .producto-nombre {
-            font-size: 22px;
-            font-weight: bold;
-            color: #1a1a1a;
-            margin-bottom: 12px;
-        }
-
-        .producto-descripcion {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            flex: 1;
-        }
-
-        .producto-caracteristicas {
-            list-style: none;
-            margin-bottom: 20px;
-        }
-
-        .producto-caracteristicas li {
-            color: #555;
-            font-size: 14px;
-            padding: 5px 0;
-            padding-left: 25px;
-            position: relative;
-        }
-
-        .producto-caracteristicas li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #228B22;
-            font-weight: bold;
-        }
-
-        .producto-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 20px;
-            border-top: 2px solid #f0f0f0;
-        }
-
-        .producto-precio {
-            font-size: 28px;
-            font-weight: bold;
-            background: linear-gradient(135deg, #228B22, #32CD32);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .producto-precio-anterior {
-            font-size: 16px;
-            color: #999;
-            text-decoration: line-through;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .producto-boton {
-            background: linear-gradient(135deg, #2196F3, #1976D2);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .producto-boton:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(33, 150, 243, 0.4);
-        }
-
-        .filtros-productos {
-            max-width: 1400px;
-            margin: 0 auto 40px auto;
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .filtro-btn {
-            background: white;
-            border: 2px solid #228B22;
-            color: #228B22;
-            padding: 10px 25px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .filtro-btn:hover,
-        .filtro-btn.active {
-            background: linear-gradient(135deg, #228B22, #32CD32);
-            color: white;
-            transform: translateY(-2px);
-        }
-
         /* ==================== RESPONSIVE ==================== */
         @media (max-width: 768px) {
             .hamburger {
@@ -959,8 +786,7 @@
             .servicios-grid,
             .beneficios-container,
             .timeline,
-            .gallery-grid,
-            .productos-grid {
+            .gallery-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -1000,23 +826,21 @@
 </head>
 <body>
     <!-- BOTÓN WHATSAPP FLOTANTE -->
-    <a href="https://wa.me/51XXXXXXXXX?text=Hola,%20me%20interesa%20obtener%20información%20sobre%20sus%20servicios" 
-       class="whatsapp-float whatsapp-btn" 
-       target="_blank" 
-       aria-label="Contactar por WhatsApp">
+    <a href="https://wa.me/51XXXXXXXXX?text=Hola%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios" target="_blank" 
+            class="whatsapp-btn" 
+            title="Chatea con nosotros">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <!-- NAVBAR -->
     <nav class="navbar" id="navbar">
         <div class="navbar-container">
-            <img src="public/images/logo.png" alt="AUTOCÓNSUMO Logo" class="logo">
+            <img src="public/images/image.png" alt="AUTOCÓNSUMO Logo" class="logo">
             <ul class="nav-links" id="navLinks">
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#servicios">Servicios</a></li>
-                <!-- Added products link to navbar -->
-                <li><a href="#productos">Productos</a></li>
                 <li><a href="#beneficios">Beneficios</a></li>
+                <li><a href="#proceso">Proceso</a></li>
                 <li><a href="#galeria">Galería</a></li>
                 <li><a href="#ubicacion">Ubicación</a></li>
                 <li><a href="#faq">Preguntas</a></li>
@@ -1065,244 +889,6 @@
         </div>
     </section>
 
-    <!-- Added complete products catalog section -->
-    <!-- CATÁLOGO DE PRODUCTOS -->
-    <section class="productos" id="productos">
-        <h2 class="section-title">Catálogo de Productos</h2>
-        
-        <div class="filtros-productos">
-            <button class="filtro-btn active" data-filter="todos">Todos</button>
-            <button class="filtro-btn" data-filter="paneles">Paneles Solares</button>
-            <button class="filtro-btn" data-filter="inversores">Inversores</button>
-            <button class="filtro-btn" data-filter="baterias">Baterías</button>
-            <button class="filtro-btn" data-filter="accesorios">Accesorios</button>
-        </div>
-
-        <div class="productos-grid">
-            <!-- Panel Solar Monocristalino -->
-            <div class="producto-card" data-categoria="paneles">
-                <div class="producto-imagen">
-                    <img src="public/images/producto1.jpg" alt="Reflector solar CUBULL 300w">
-                    <span class="producto-badge">Más Vendido</span>
-                </div>
-                <div class="producto-contenido">
-                    <div class="producto-categoria">Accesorios</div>
-                    <h3 class="producto-nombre">Reflector Solar CUBULL 300W</h3>
-                    <p class="producto-descripcion">Reflector solar LED de 300W con panel integrado, encendido automático y alta potencia de iluminación. Ideal para exteriores como patios, fachadas, estacionamientos y áreas abiertas, sin consumo de energía eléctrica.</p>
-                    <ul class="producto-caracteristicas"> 
-                        <li>Potencia: 300W</li>
-                        <li>Tecnología LED solar</li>
-                        <li>Panel solar integrado</li>
-                        <li>Uso exterior</li>
-                    </ul>
-                    <div class="producto-footer">
-                        <div>
-                            <span class="producto-precio-anterior">S/. 220</span>
-                            <div class="producto-precio">S/. 180</div>
-                        </div>
-                        <button class="producto-boton">Consultar</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Panel Solar Policristalino -->
-            <div class="producto-card" data-categoria="paneles">
-                <div class="producto-imagen">
-                    <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=500&h=400&fit=crop" alt="Panel Solar Policristalino">
-                </div>
-                <div class="producto-contenido">
-                    <div class="producto-categoria">Paneles Solares</div>
-                    <h3 class="producto-nombre">Panel Solar Policristalino 380W</h3>
-                    <p class="producto-descripcion">Excelente relación calidad-precio para instalaciones residenciales y comerciales de mediana escala.</p>
-                    <ul class="producto-caracteristicas">
-                        <li>Potencia: 380W</li>
-                        <li>Eficiencia: 18.5%</li>
-                        <li>Garantía: 20 años</li>
-                        <li>Dimensiones: 1956 x 992 mm</li>
-                    </ul>
-                    <div class="producto-footer">
-                        <div>
-                            <div class="producto-precio">S/. 499</div>
-                        </div>
-                        <button class="producto-boton">Consultar</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Inversor Solar Híbrido -->
-            <div class="producto-card" data-categoria="inversores">
-                <div class="producto-imagen">
-                    <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=500&h=400&fit=crop" alt="Inversor Solar Híbrido">
-                    <span class="producto-badge">Nuevo</span>
-                </div>
-                <div class="producto-contenido">
-                    <div class="producto-categoria">Inversores</div>
-                    <h3 class="producto-nombre">Inversor Híbrido 5kW</h3>
-                    <p class="producto-descripcion">Inversor inteligente con capacidad de almacenamiento en batería y conexión a red. Ideal para sistemas autónomos.</p>
-                    <ul class="producto-caracteristicas">
-                        <li>Potencia: 5000W</li>
-                        <li>Eficiencia: 97.6%</li>
-                        <li>Monitoreo WiFi incluido</li>
-                        <li>Garantía: 10 años</li>
-                    </ul>
-                    <div class="producto-footer">
-                        <div>
-                            <span class="producto-precio-anterior">S/. 3,200</span>
-                            <div class="producto-precio">S/. 2,899</div>
-                        </div>
-                        <button class="producto-boton">Consultar</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Inversor On-Grid -->
-            <div class="producto-card" data-categoria="inversores">
-                <div class="producto-imagen">
-                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=400&fit=crop" alt="Inversor On-Grid">
-                </div>
-                <div class="producto-contenido">
-                    <div class="producto-categoria">Inversores</div>
-                    <h3 class="producto-nombre">Inversor On-Grid 3kW</h3>
-                    <p class="producto-descripcion">Inversor monofásico de conexión a red eléctrica, perfecto para instalaciones residenciales pequeñas.</p>
-                    <ul class="producto-caracteristicas">
-                        <li>Potencia: 3000W</li>
-                        <li>Eficiencia: 97.2%</li>
-                        <li>2 MPPT independientes</li>
-                        <li>Garantía: 5 años</li>
-                    </ul>
-                    <div class="producto-footer">
-                        <div>
-                            <div class="producto-precio">S/. 1,499</div>
-                        </div>
-                        <button class="producto-boton">Consultar</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Batería de Litio -->
-            <div class="producto-card" data-categoria="baterias">
-                <div class="producto-imagen">
-                    <img src="https://images.unsplash.com/photo-1609392350062-f95ec5f93a0f?w=500&h=400&fit=crop" alt="Batería de Litio">
-                    <span class="producto-badge">Alta Capacidad</span>
-                </div>
-                <div class="producto-contenido">
-                    <div class="producto-categoria">Baterías</div>
-                    <h3 class="producto-nombre">Batería de Litio 10kWh</h3>
-                    <p class="producto-descripcion">Sistema de almacenamiento de energía de última generación con tecnología LiFePO4 para máxima durabilidad.</p>
-                    <ul class="producto-caracteristicas">
-                        <li>Capacidad: 10 kWh</li>
-                        <li>Ciclos de vida: 6000+</li>
-                        <li>Profundidad descarga: 90%</li>
-                        <li>Garantía: 10 años</li>
-                    </ul>
-                    <div class="producto-footer">
-                        <div>
-                            <span class="producto-precio-anterior">S/. 6,500</span>
-                            <div class="producto-precio">S/. 5,799</div>
-                        </div>
-                        <button class="producto-boton">Consultar</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Batería AGM -->
-            <div class="producto-card" data-categoria="baterias">
-                <div class="producto-imagen">
-                    <img src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=500&h=400&fit=crop" alt="Batería AGM">
-                </div>
-                <div class="producto-contenido">
-                    <div class="producto-categoria">Baterías</div>
-                    <h3 class="producto-nombre">Batería AGM 200Ah 12V</h3>
-                    <p class="producto-descripcion">Batería de ciclo profundo sellada, libre de mantenimiento, ideal para sistemas solares aislados.</p>
-                    <ul class="producto-caracteristicas">
-                        <li>Capacidad: 200Ah</li>
-                        <li>Voltaje: 12V</li>
-                        <li>Ciclos: 1200+ al 50%</li>
-                        <li>Garantía: 3 años</li>
-                    </ul>
-                    <div class="producto-footer">
-                        <div>
-                            <div class="producto-precio">S/. 899</div>
-                        </div>
-                        <button class="producto-boton">Consultar</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Kit de Montaje -->
-            <div class="producto-card" data-categoria="accesorios">
-                <div class="producto-imagen">
-                    <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=500&h=400&fit=crop" alt="Kit de Montaje">
-                </div>
-                <div class="producto-contenido">
-                    <div class="producto-categoria">Accesorios</div>
-                    <h3 class="producto-nombre">Kit de Montaje para Techo</h3>
-                    <p class="producto-descripcion">Sistema completo de rieles y abrazaderas de aluminio para instalación en techo inclinado, incluye tornillería.</p>
-                    <ul class="producto-caracteristicas">
-                        <li>Material: Aluminio anodizado</li>
-                        <li>Capacidad: 8-12 paneles</li>
-                        <li>Incluye tornillería inox</li>
-                        <li>Fácil instalación</li>
-                    </ul>
-                    <div class="producto-footer">
-                        <div>
-                            <div class="producto-precio">S/. 349</div>
-                        </div>
-                        <button class="producto-boton">Consultar</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Regulador de Carga -->
-            <div class="producto-card" data-categoria="accesorios">
-                <div class="producto-imagen">
-                    <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=500&h=400&fit=crop" alt="Regulador de Carga">
-                </div>
-                <div class="producto-contenido">
-                    <div class="producto-categoria">Accesorios</div>
-                    <h3 class="producto-nombre">Regulador MPPT 60A</h3>
-                    <p class="producto-descripcion">Controlador de carga solar con tecnología MPPT para máxima eficiencia en la carga de baterías.</p>
-                    <ul class="producto-caracteristicas">
-                        <li>Corriente: 60A</li>
-                        <li>Voltaje: 12/24/48V auto</li>
-                        <li>Eficiencia: 98%</li>
-                        <li>Pantalla LCD incluida</li>
-                    </ul>
-                    <div class="producto-footer">
-                        <div>
-                            <div class="producto-precio">S/. 599</div>
-                        </div>
-                        <button class="producto-boton">Consultar</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Cable Solar -->
-            <div class="producto-card" data-categoria="accesorios">
-                <div class="producto-imagen">
-                    <img src="https://images.unsplash.com/photo-1580893211075-5879c5d97f11?w=500&h=400&fit=crop" alt="Cable Solar">
-                </div>
-                <div class="producto-contenido">
-                    <div class="producto-categoria">Accesorios</div>
-                    <h3 class="producto-nombre">Cable Solar 4mm² (Metro)</h3>
-                    <p class="producto-descripcion">Cable fotovoltaico certificado con doble aislamiento resistente a UV y condiciones climáticas extremas.</p>
-                    <ul class="producto-caracteristicas">
-                        <li>Calibre: 4mm² (12 AWG)</li>
-                        <li>Certificación: TÜV</li>
-                        <li>Resistente UV/Ozono</li>
-                        <li>Temperatura: -40°C a +90°C</li>
-                    </ul>
-                    <div class="producto-footer">
-                        <div>
-                            <div class="producto-precio">S/. 4.50</div>
-                        </div>
-                        <button class="producto-boton">Consultar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- BENEFICIOS -->
     <section class="beneficios" id="beneficios">
         <h2 class="section-title">¿Por Qué Elegirnos?</h2>
@@ -1339,6 +925,38 @@
             <div class="stat-card">
                 <div class="stat-number" data-count="15">0</div>
                 <p>Años Garantía Paneles</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESO -->
+    <section class="proceso" id="proceso">
+        <h2 class="section-title">Nuestro Proceso</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot">1</div>
+                <h3>Consulta Inicial</h3>
+                <p>Evaluamos tu situación energética actual sin costo</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot">2</div>
+                <h3>Análisis Detallado</h3>
+                <p>Realizamos un estudio técnico completo de tu inmueble</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot">3</div>
+                <h3>Propuesta Personalizada</h3>
+                <p>Presentamos opciones adaptadas a tu presupuesto</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot">4</div>
+                <h3>Instalación Profesional</h3>
+                <p>Instalación por técnicos certificados y seguros</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot">5</div>
+                <h3>Mantenimiento</h3>
+                <p>Seguimiento continuo y servicio técnico permanente</p>
             </div>
         </div>
     </section>
@@ -1484,14 +1102,7 @@
                     e.preventDefault();
                     const target = document.querySelector(href);
                     if (target) {
-                        // Calculate target position considering navbar height
-                        const navbarHeight = document.getElementById('navbar').offsetHeight;
-                        const targetPosition = target.getBoundingClientRect().top + window.scrollY - navbarHeight;
-                        
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                 }
             });
@@ -1504,8 +1115,7 @@
             counters.forEach(counter => {
                 const target = parseInt(counter.getAttribute('data-count'));
                 let current = 0;
-                // Adjust increment for smoother animation and avoid division by zero
-                const increment = Math.max(1, Math.floor(target / 100)); 
+                const increment = target / 50;
                 
                 const updateCounter = () => {
                     current += increment;
@@ -1563,70 +1173,11 @@
         });
 
         // ==================== EFECTO PARALLAX EN HERO ====================
-        // This parallax effect might not be desired with fixed navbar. 
-        // Consider removing or adjusting if it causes layout issues.
-        // window.addEventListener('scroll', () => {
-        //     const hero = document.querySelector('.hero');
-        //     const scrollPosition = window.scrollY;
-        //     hero.style.transform = `translateY(${scrollPosition * 0.3}px)`;
-        // });
-
-        // Filtros de productos
-        const filterButtons = document.querySelectorAll('.filtro-btn');
-        const productCards = document.querySelectorAll('.producto-card');
-
-        filterButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                // Remove active class from all buttons
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                // Add active class to clicked button
-                this.classList.add('active');
-
-                const filter = this.getAttribute('data-filter');
-
-                productCards.forEach(card => {
-                    // Reset styles before applying new ones for smooth transitions
-                    card.style.opacity = '0';
-                    card.style.transform = 'scale(0.9)';
-                    card.style.display = 'none';
-
-                    setTimeout(() => {
-                        if (filter === 'todos') {
-                            card.style.display = 'flex';
-                            card.style.opacity = '1';
-                            card.style.transform = 'scale(1)';
-                        } else {
-                            const categoria = card.getAttribute('data-categoria');
-                            if (categoria === filter) {
-                                card.style.display = 'flex';
-                                card.style.opacity = '1';
-                                card.style.transform = 'scale(1)';
-                            }
-                        }
-                    }, 10); // Small delay to allow initial reset styles to apply
-                });
-            });
+        window.addEventListener('scroll', () => {
+            const hero = document.querySelector('.hero');
+            const scrollPosition = window.scrollY;
+            hero.style.transform = `translateY(${scrollPosition * 0.3}px)`;
         });
-
-        // Product button actions
-        document.querySelectorAll('.producto-boton').forEach(button => {
-            button.addEventListener('click', function() {
-                const productName = this.closest('.producto-card').querySelector('.producto-nombre').textContent;
-                // Replace XXXXXXXXXX with your actual WhatsApp number
-                const whatsappUrl = `https://wa.me/51XXXXXXXXX?text=Hola,%20me%20interesa%20el%20producto:%20${encodeURIComponent(productName)}`;
-                window.open(whatsappUrl, '_blank');
-            });
-        });
-
-        // Update WhatsApp button class and href if it's not already the updated one.
-        // This is to handle cases where the html might be copied/pasted incorrectly.
-        const whatsappBtn = document.querySelector('.whatsapp-btn');
-        if (whatsappBtn && !whatsappBtn.classList.contains('whatsapp-float')) {
-            whatsappBtn.classList.add('whatsapp-float');
-            whatsappBtn.href = "https://wa.me/51XXXXXXXXX?text=Hola,%20me%20interesa%20obtener%20información%20sobre%20sus%20servicios";
-            whatsappBtn.setAttribute('aria-label', 'Contactar por WhatsApp');
-            whatsappBtn.classList.remove('whatsapp-btn'); // Remove old class
-        }
     </script>
 </body>
 </html>
