@@ -914,6 +914,96 @@
             transform: translateY(-2px);
         }
 
+        /* ==================== CARRUSEL PRODUCTOS (8 por página) ==================== */
+        .productos-carousel {
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+        }   
+
+        .productos-viewport {
+            overflow: hidden;
+        }
+
+        .productos-track {
+            display: flex;
+            transition: transform .35s ease;
+            will-change: transform;
+        }
+
+        .productos-page {
+            flex: 0 0 100%;
+        }
+
+        .productos-grid-page {
+            display: grid;
+            gap: 30px;
+            grid-template-columns: repeat(4, minmax(0, 1fr)); /* desktop: 4 por fila */
+        }
+
+/* Botones navegación */
+.prod-nav{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  background: white;
+  box-shadow: 0 10px 25px rgba(0,0,0,.18);
+  transition: .2s ease;
+  z-index: 5;
+}
+
+.prod-nav:hover{ transform: translateY(-50%) scale(1.06); }
+.prod-nav:disabled{ opacity: .4; cursor: not-allowed; transform: translateY(-50%); }
+
+.prod-prev{ left: -12px; }
+.prod-next{ right: -12px; }
+
+.prod-nav i{ font-size: 18px; color: #1e293b; }
+
+/* Paginador (puntitos) */
+.productos-pager{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.pager-dot{
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(30,41,59,.25);
+  border: none;
+  cursor: pointer;
+  transition: .2s ease;
+}
+.pager-dot.active{
+  width: 26px;
+  background: linear-gradient(135deg, #22c55e, #0066cc);
+}
+
+/* tablet: 2 por fila */
+@media (max-width: 1024px) {
+    .productos-grid-page {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* móvil: 1 por fila (lo que tú quieres) */
+@media (max-width: 768px) {
+    .productos-grid-page {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+
         /* ==================== RESPONSIVE ==================== */
         @media (max-width: 768px) {
             .hamburger {
@@ -1000,7 +1090,7 @@
 </head>
 <body>
     <!-- BOTÓN WHATSAPP FLOTANTE -->
-    <a href="https://wa.me/51XXXXXXXXX?text=Hola,%20me%20interesa%20obtener%20información%20sobre%20sus%20servicios" 
+    <a href="https://wa.me/51947239146?text=Hola,%20me%20interesa%20obtener%20información%20sobre%20sus%20servicios" 
        class="whatsapp-float whatsapp-btn" 
        target="_blank" 
        aria-label="Contactar por WhatsApp">
@@ -1078,21 +1168,30 @@
             <button class="filtro-btn" data-filter="accesorios">Accesorios</button>
         </div>
 
-        <div class="productos-grid">
-            <!-- Panel Solar Monocristalino -->
-            <div class="producto-card" data-categoria="paneles">
+<div class="productos-carousel">
+  <button class="prod-nav prod-prev" aria-label="Anterior">
+    <i class="fa-solid fa-chevron-left"></i>
+  </button>
+
+  <div class="productos-viewport">
+    <div class="productos-track" id="productosTrack">
+            <!-- Reflector Solar CUBULL 300W -->
+            <div class="producto-card" data-categoria="accesorios">
                 <div class="producto-imagen">
-                    <img src="public/images/producto1.jpg" alt="Reflector solar CUBULL 300w">
+                    <img src="public/images/producto1.jpg" alt="Reflector solar CUBULL 300W">
                     <span class="producto-badge">Más Vendido</span>
                 </div>
                 <div class="producto-contenido">
                     <div class="producto-categoria">Accesorios</div>
                     <h3 class="producto-nombre">Reflector Solar CUBULL 300W</h3>
-                    <p class="producto-descripcion">Reflector solar LED de 300W con panel integrado, encendido automático y alta potencia de iluminación. Ideal para exteriores como patios, fachadas, estacionamientos y áreas abiertas, sin consumo de energía eléctrica.</p>
+                    <p class="producto-descripcion">
+                        Reflector solar LED de 300W con panel solar externo y control remoto.
+                        Incluye accesorios de instalación para uso en exteriores.
+                    </p>
                     <ul class="producto-caracteristicas"> 
                         <li>Potencia: 300W</li>
-                        <li>Tecnología LED solar</li>
-                        <li>Panel solar integrado</li>
+                        <li>Panel solar externo</li>
+                        <li>Incluye control remoto</li>
                         <li>Uso exterior</li>
                     </ul>
                     <div class="producto-footer">
@@ -1105,201 +1204,689 @@
                 </div>
             </div>
 
-            <!-- Panel Solar Policristalino -->
+            <!-- Reflector Solar CUBULL 200W -->
+            <div class="producto-card" data-categoria="accesorios">
+                <div class="producto-imagen">
+                    <img src="public/images/producto2.jpg" alt="Reflector solar CUBULL 200W">
+                </div>
+                <div class="producto-contenido">
+                    <div class="producto-categoria">Accesorios</div>
+                    <h3 class="producto-nombre">Reflector Solar CUBULL 200W</h3>
+                    <p class="producto-descripcion">
+                        Reflector solar LED de 200W con panel solar externo y control remoto.
+                        Incluye accesorios de instalación para iluminación exterior.
+                    </p>
+                    <ul class="producto-caracteristicas"> 
+                        <li>Potencia: 200W</li>
+                        <li>Panel solar externo</li>
+                        <li>Incluye control remoto</li>
+                        <li>Uso exterior</li>
+                    </ul>
+                    <div class="producto-footer">
+                        <div>
+                            <div class="producto-precio">S/. 150</div>
+                        </div>
+                        <button class="producto-boton">Consultar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reflector Solar CUBULL 100W -->
+            <div class="producto-card" data-categoria="accesorios">
+                <div class="producto-imagen">
+                    <img src="public/images/producto3.jpg" alt="Reflector solar CUBULL 100W">
+                </div>
+                <div class="producto-contenido">
+                    <div class="producto-categoria">Accesorios</div>
+                    <h3 class="producto-nombre">Reflector Solar CUBULL 100W</h3>
+                    <p class="producto-descripcion">
+                        Reflector solar LED de 100W con panel integrado y encendido automático.
+                        Ideal para iluminación exterior sin consumo eléctrico.
+                    </p>
+                    <ul class="producto-caracteristicas"> 
+                        <li>Potencia: 100W</li>
+                        <li>Tecnología LED solar</li>
+                        <li>Panel solar integrado</li>
+                        <li>Uso exterior</li>
+                    </ul>
+                    <div class="producto-footer">
+                        <div>
+                            <div class="producto-precio">S/. 100</div>
+                        </div>
+                        <button class="producto-boton">Consultar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Batería de Litio MUST 12V 200Ah -->
+            <div class="producto-card" data-categoria="baterias">
+                <div class="producto-imagen">
+                    <img src="public/images/producto4.png" alt="Batería de litio MUST 12V 200Ah">
+                </div>
+                <div class="producto-contenido">
+                    <div class="producto-categoria">Baterías</div>
+                    <h3 class="producto-nombre">Batería de Litio MUST 12V 200Ah</h3>
+                    <p class="producto-descripcion">
+                        Batería de litio LiFePO4 MUST 12.8V 200Ah para almacenamiento de energía solar.
+                        Alta durabilidad, mayor eficiencia y sistema BMS integrado.
+                    </p>
+                    <ul class="producto-caracteristicas"> 
+                        <li>Voltaje nominal: 12.8V</li>
+                        <li>Capacidad: 200Ah</li>
+                        <li>Tecnología: LiFePO4</li>
+                        <li>BMS integrado</li>
+                    </ul>
+                    <div class="producto-footer">
+                        <div>
+                            <div class="producto-precio">S/. 1600</div>
+                        </div>
+                        <button class="producto-boton">Consultar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel Solar TRINA Monoperc 605W -->
             <div class="producto-card" data-categoria="paneles">
                 <div class="producto-imagen">
-                    <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=500&h=400&fit=crop" alt="Panel Solar Policristalino">
+                    <img src="public/images/producto5.jpg" alt="Panel solar TRINA Monoperc 605W">
                 </div>
                 <div class="producto-contenido">
                     <div class="producto-categoria">Paneles Solares</div>
-                    <h3 class="producto-nombre">Panel Solar Policristalino 380W</h3>
-                    <p class="producto-descripcion">Excelente relación calidad-precio para instalaciones residenciales y comerciales de mediana escala.</p>
-                    <ul class="producto-caracteristicas">
-                        <li>Potencia: 380W</li>
-                        <li>Eficiencia: 18.5%</li>
-                        <li>Garantía: 20 años</li>
-                        <li>Dimensiones: 1956 x 992 mm</li>
+                    <h3 class="producto-nombre">Panel Solar TRINA Monoperc 605W</h3>
+                    <p class="producto-descripcion">
+                        Panel solar TRINA Monoperc de hasta 605W con alta eficiencia del 21.4%.
+                        Diseñado para sistemas fotovoltaicos de alto rendimiento.
+                    </p>
+                    <ul class="producto-caracteristicas"> 
+                        <li>Potencia: 585–605W</li>
+                        <li>Tecnología: Mono PERC</li>
+                        <li>Eficiencia: 21.4%</li>
+                        <li>25 años de eficiencia</li>
                     </ul>
                     <div class="producto-footer">
                         <div>
-                            <div class="producto-precio">S/. 499</div>
+                            <div class="producto-precio">S/. 500</div>
                         </div>
                         <button class="producto-boton">Consultar</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Inversor Solar Híbrido -->
-            <div class="producto-card" data-categoria="inversores">
-                <div class="producto-imagen">
-                    <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=500&h=400&fit=crop" alt="Inversor Solar Híbrido">
-                    <span class="producto-badge">Nuevo</span>
-                </div>
-                <div class="producto-contenido">
-                    <div class="producto-categoria">Inversores</div>
-                    <h3 class="producto-nombre">Inversor Híbrido 5kW</h3>
-                    <p class="producto-descripcion">Inversor inteligente con capacidad de almacenamiento en batería y conexión a red. Ideal para sistemas autónomos.</p>
-                    <ul class="producto-caracteristicas">
-                        <li>Potencia: 5000W</li>
-                        <li>Eficiencia: 97.6%</li>
-                        <li>Monitoreo WiFi incluido</li>
-                        <li>Garantía: 10 años</li>
-                    </ul>
-                    <div class="producto-footer">
-                        <div>
-                            <span class="producto-precio-anterior">S/. 3,200</span>
-                            <div class="producto-precio">S/. 2,899</div>
-                        </div>
-                        <button class="producto-boton">Consultar</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Inversor On-Grid -->
-            <div class="producto-card" data-categoria="inversores">
-                <div class="producto-imagen">
-                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=400&fit=crop" alt="Inversor On-Grid">
-                </div>
-                <div class="producto-contenido">
-                    <div class="producto-categoria">Inversores</div>
-                    <h3 class="producto-nombre">Inversor On-Grid 3kW</h3>
-                    <p class="producto-descripcion">Inversor monofásico de conexión a red eléctrica, perfecto para instalaciones residenciales pequeñas.</p>
-                    <ul class="producto-caracteristicas">
-                        <li>Potencia: 3000W</li>
-                        <li>Eficiencia: 97.2%</li>
-                        <li>2 MPPT independientes</li>
-                        <li>Garantía: 5 años</li>
-                    </ul>
-                    <div class="producto-footer">
-                        <div>
-                            <div class="producto-precio">S/. 1,499</div>
-                        </div>
-                        <button class="producto-boton">Consultar</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Batería de Litio -->
+            <!-- Batería GEL AOKLY 12V 300Ah -->
             <div class="producto-card" data-categoria="baterias">
                 <div class="producto-imagen">
-                    <img src="https://images.unsplash.com/photo-1609392350062-f95ec5f93a0f?w=500&h=400&fit=crop" alt="Batería de Litio">
-                    <span class="producto-badge">Alta Capacidad</span>
+                    <img src="public/images/producto6.jpeg" alt="Batería GEL AOKLY 12V 300Ah">
                 </div>
                 <div class="producto-contenido">
                     <div class="producto-categoria">Baterías</div>
-                    <h3 class="producto-nombre">Batería de Litio 10kWh</h3>
-                    <p class="producto-descripcion">Sistema de almacenamiento de energía de última generación con tecnología LiFePO4 para máxima durabilidad.</p>
-                    <ul class="producto-caracteristicas">
-                        <li>Capacidad: 10 kWh</li>
-                        <li>Ciclos de vida: 6000+</li>
-                        <li>Profundidad descarga: 90%</li>
-                        <li>Garantía: 10 años</li>
-                    </ul>
-                    <div class="producto-footer">
-                        <div>
-                            <span class="producto-precio-anterior">S/. 6,500</span>
-                            <div class="producto-precio">S/. 5,799</div>
-                        </div>
-                        <button class="producto-boton">Consultar</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Batería AGM -->
-            <div class="producto-card" data-categoria="baterias">
-                <div class="producto-imagen">
-                    <img src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=500&h=400&fit=crop" alt="Batería AGM">
-                </div>
-                <div class="producto-contenido">
-                    <div class="producto-categoria">Baterías</div>
-                    <h3 class="producto-nombre">Batería AGM 200Ah 12V</h3>
-                    <p class="producto-descripcion">Batería de ciclo profundo sellada, libre de mantenimiento, ideal para sistemas solares aislados.</p>
-                    <ul class="producto-caracteristicas">
-                        <li>Capacidad: 200Ah</li>
+                    <h3 class="producto-nombre">Batería GEL AOKLY 12V 300Ah</h3>
+                    <p class="producto-descripcion">
+                        Batería GEL AOKLY 12V 300Ah para almacenamiento de energía en sistemas solares.
+                        Diseño sellado, estable y libre de mantenimiento.
+                    </p>
+                    <ul class="producto-caracteristicas"> 
                         <li>Voltaje: 12V</li>
-                        <li>Ciclos: 1200+ al 50%</li>
-                        <li>Garantía: 3 años</li>
+                        <li>Capacidad: 300Ah</li>
+                        <li>Tecnología: GEL</li>
+                        <li>Uso en sistemas solares</li>
                     </ul>
                     <div class="producto-footer">
                         <div>
-                            <div class="producto-precio">S/. 899</div>
+                            <div class="producto-precio">S/. 1300</div>
                         </div>
                         <button class="producto-boton">Consultar</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Kit de Montaje -->
-            <div class="producto-card" data-categoria="accesorios">
+            <!-- Inversor Híbrido MUST 1200W 12V -->
+            <div class="producto-card" data-categoria="inversores">
                 <div class="producto-imagen">
-                    <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=500&h=400&fit=crop" alt="Kit de Montaje">
+                    <img src="public/images/producto7.png" alt="Inversor Híbrido MUST 1200W 12V">
                 </div>
                 <div class="producto-contenido">
-                    <div class="producto-categoria">Accesorios</div>
-                    <h3 class="producto-nombre">Kit de Montaje para Techo</h3>
-                    <p class="producto-descripcion">Sistema completo de rieles y abrazaderas de aluminio para instalación en techo inclinado, incluye tornillería.</p>
-                    <ul class="producto-caracteristicas">
-                        <li>Material: Aluminio anodizado</li>
-                        <li>Capacidad: 8-12 paneles</li>
-                        <li>Incluye tornillería inox</li>
-                        <li>Fácil instalación</li>
+                    <div class="producto-categoria">Inversores</div>
+                    <h3 class="producto-nombre">Inversor Híbrido MUST 1200W 12VDC / 220VAC</h3>
+                    <p class="producto-descripcion">
+                        Inversor híbrido MUST de 1200W con salida 220VAC y onda senoidal pura.
+                        Ideal para sistemas solares residenciales.
+                    </p>
+                    <ul class="producto-caracteristicas"> 
+                        <li>Potencia: 1200W</li>
+                        <li>Voltaje batería: 12VDC</li>
+                        <li>Salida: 220VAC</li>
+                        <li>Senoidal pura – 60A</li>
                     </ul>
                     <div class="producto-footer">
                         <div>
-                            <div class="producto-precio">S/. 349</div>
+                            <div class="producto-precio">S/. 890</div>
                         </div>
                         <button class="producto-boton">Consultar</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Regulador de Carga -->
-            <div class="producto-card" data-categoria="accesorios">
+            <!-- Batería GEL VOLTPOWER 12V 300Ah -->
+            <div class="producto-card" data-categoria="baterias">
                 <div class="producto-imagen">
-                    <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=500&h=400&fit=crop" alt="Regulador de Carga">
+                    <img src="public/images/producto8.jpeg" alt="Batería GEL VOLTPOWER 12V 300Ah">
                 </div>
                 <div class="producto-contenido">
-                    <div class="producto-categoria">Accesorios</div>
-                    <h3 class="producto-nombre">Regulador MPPT 60A</h3>
-                    <p class="producto-descripcion">Controlador de carga solar con tecnología MPPT para máxima eficiencia en la carga de baterías.</p>
-                    <ul class="producto-caracteristicas">
-                        <li>Corriente: 60A</li>
-                        <li>Voltaje: 12/24/48V auto</li>
-                        <li>Eficiencia: 98%</li>
-                        <li>Pantalla LCD incluida</li>
+                    <div class="producto-categoria">Baterías</div>
+                    <h3 class="producto-nombre">Batería GEL VOLTPOWER 12V 300Ah</h3>
+                    <p class="producto-descripcion">
+                        Batería GEL VOLTPOWER 12V 300Ah para almacenamiento de energía solar.
+                        Diseño sellado, estable y libre de mantenimiento.
+                    </p>
+                    <ul class="producto-caracteristicas"> 
+                        <li>Voltaje: 12V</li>
+                        <li>Capacidad: 300Ah</li>
+                        <li>Tecnología: GEL</li>
+                        <li>Uso en sistemas solares</li>
                     </ul>
                     <div class="producto-footer">
                         <div>
-                            <div class="producto-precio">S/. 599</div>
+                            <div class="producto-precio">S/. 1300</div>
                         </div>
                         <button class="producto-boton">Consultar</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Cable Solar -->
+            <!-- Cable de Batería #6 AWG -->
             <div class="producto-card" data-categoria="accesorios">
                 <div class="producto-imagen">
-                    <img src="https://images.unsplash.com/photo-1580893211075-5879c5d97f11?w=500&h=400&fit=crop" alt="Cable Solar">
+                    <img src="public/images/producto9.jpeg" alt="Cable de batería #6 AWG">
                 </div>
                 <div class="producto-contenido">
                     <div class="producto-categoria">Accesorios</div>
-                    <h3 class="producto-nombre">Cable Solar 4mm² (Metro)</h3>
-                    <p class="producto-descripcion">Cable fotovoltaico certificado con doble aislamiento resistente a UV y condiciones climáticas extremas.</p>
-                    <ul class="producto-caracteristicas">
-                        <li>Calibre: 4mm² (12 AWG)</li>
-                        <li>Certificación: TÜV</li>
-                        <li>Resistente UV/Ozono</li>
-                        <li>Temperatura: -40°C a +90°C</li>
+                    <h3 class="producto-nombre">Cable de Batería #6 AWG</h3>
+                    <p class="producto-descripcion">
+                        Cable de batería calibre #6 AWG con terminales prensados.
+                        Ideal para conexiones seguras en sistemas solares.
+                    </p>
+                    <ul class="producto-caracteristicas"> 
+                        <li>Calibre: #6 AWG</li>
+                        <li>Cable rojo y negro</li>
+                        <li>Terminales tipo ojal</li>
+                        <li>Uso en baterías</li>
                     </ul>
                     <div class="producto-footer">
                         <div>
-                            <div class="producto-precio">S/. 4.50</div>
+                            <div class="producto-precio">S/. 12</div>
                         </div>
                         <button class="producto-boton">Consultar</button>
                     </div>
                 </div>
             </div>
+
+            <!-- Inversor Híbrido MUST PRO 3000W 24V -->
+            <div class="producto-card" data-categoria="inversores">
+                <div class="producto-imagen">
+                    <img src="public/images/producto10.jpeg" alt="Inversor Híbrido MUST PRO 3000W 24V">
+                </div>
+                <div class="producto-contenido">
+                    <div class="producto-categoria">Inversores</div>
+                    <h3 class="producto-nombre">Inversor Híbrido MUST PRO 3000W 24VDC / 220VAC</h3>
+                    <p class="producto-descripcion">
+                        Inversor híbrido MUST PRO de 3000W con salida 220VAC y controlador MPPT.
+                        Diseñado para sistemas solares de mayor capacidad.
+                    </p>
+                    <ul class="producto-caracteristicas"> 
+                        <li>Potencia: 3000W</li>
+                        <li>Voltaje batería: 24VDC</li>
+                        <li>Salida: 220VAC</li>
+                        <li>MPPT 80A</li>
+                    </ul>
+                    <div class="producto-footer">
+                        <div>
+                            <div class="producto-precio">S/. 1,500</div>
+                        </div>
+                        <button class="producto-boton">Consultar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estabilizador de Voltaje SOLIDO 10KVA -->
+            <div class="producto-card" data-categoria="accesorios">
+                <div class="producto-imagen">
+                    <img src="public/images/producto11.jpeg" alt="Estabilizador de voltaje SOLIDO 10KVA">
+                </div>
+                <div class="producto-contenido">
+                    <div class="producto-categoria">Accesorios</div>
+                    <h3 class="producto-nombre">Estabilizador de Voltaje SOLIDO 10KVA</h3>
+                    <p class="producto-descripcion">
+                        Estabilizador de voltaje automático SOLIDO de 10KVA para protección eléctrica.
+                        Ideal para equipos y sistemas que requieren voltaje estable.
+                    </p>
+                    <ul class="producto-caracteristicas"> 
+                        <li>Capacidad: 10KVA / 10,000W</li>
+                        <li>Tipo: Automático</li>
+                        <li>Indicadores LED y voltímetro</li>
+                        <li>Fabricación nacional</li>
+                    </ul>
+                    <div class="producto-footer">
+                        <div>
+                            <div class="producto-precio">S/. 980</div>
+                        </div>
+                        <button class="producto-boton">Consultar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kit Solar Portátil EQUISOL EQ-1980T -->
+            <div class="producto-card" data-categoria="accesorios">
+                <div class="producto-imagen">
+                    <img src="public/images/producto12.jpeg" alt="Kit solar portátil EQUISOL EQ-1980T">
+                </div>
+                <div class="producto-contenido">
+                    <div class="producto-categoria">Accesorios</div>
+                    <h3 class="producto-nombre">Kit Solar Portátil EQUISOL EQ-1980T</h3>
+                    <p class="producto-descripcion">
+                        Kit solar portátil EQUISOL con panel, unidad central y lámparas LED.
+                        Ideal para iluminación básica en zonas sin red eléctrica.
+                    </p>
+                    <ul class="producto-caracteristicas"> 
+                        <li>Incluye panel solar</li>
+                        <li>Unidad central portátil</li>
+                        <li>Lámparas LED</li>
+                        <li>Uso portátil</li>
+                    </ul>
+                    <div class="producto-footer">
+                        <div>
+                            <div class="producto-precio">S/. 200</div>
+                        </div>
+                        <button class="producto-boton">Consultar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel Solar TRINA SOLAR Bifacial 720W -->
+            <div class="producto-card" data-categoria="paneles">
+                <div class="producto-imagen">
+                    <img src="public/images/producto13.jpeg" alt="Panel solar TRINA SOLAR bifacial 720W">
+                </div>
+                <div class="producto-contenido">
+                    <div class="producto-categoria">Paneles Solares</div>
+                    <h3 class="producto-nombre">Panel Solar TRINA SOLAR Bifacial 720W</h3>
+                    <p class="producto-descripcion">
+                        Panel solar TRINA SOLAR bifacial de 720W para sistemas fotovoltaicos de alta potencia.
+                        Diseñado para instalaciones de gran rendimiento.
+                    </p>
+                    <ul class="producto-caracteristicas"> 
+                        <li>Potencia: 720W</li>
+                        <li>Tecnología bifacial</li>
+                        <li>Marca: Trina Solar</li>
+                        <li>Uso fotovoltaico</li>
+                    </ul>
+                    <div class="producto-footer">
+                        <div>
+                            <div class="producto-precio">S/. 550</div>
+                        </div>
+                        <button class="producto-boton">Consultar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Batería AGM RITAR 12V 200Ah -->
+            <div class="producto-card" data-categoria="baterias">
+                <div class="producto-imagen">
+                    <img src="public/images/producto14.jpeg" alt="Batería AGM RITAR 12V 200Ah">
+                </div>
+                <div class="producto-contenido">
+                    <div class="producto-categoria">Baterías</div>
+                    <h3 class="producto-nombre">Batería AGM RITAR 12V 200Ah</h3>
+                    <p class="producto-descripcion">
+                        Batería AGM RITAR 12V 200Ah para almacenamiento de energía y respaldo eléctrico.
+                        Diseño sellado, estable y libre de mantenimiento.
+                    </p>
+                    <ul class="producto-caracteristicas"> 
+                        <li>Voltaje: 12V</li>
+                        <li>Capacidad: 200Ah</li>
+                        <li>Tecnología: AGM</li>
+                        <li>Uso solar y respaldo</li>
+                    </ul>
+                    <div class="producto-footer">
+                        <div>
+                            <div class="producto-precio">S/. 1050</div>
+                        </div>
+                        <button class="producto-boton">Consultar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inversor SOLTRONIX 600W Onda Modificada -->
+            <div class="producto-card" data-categoria="inversores">
+                <div class="producto-imagen">
+                    <img src="public/images/producto15.jpeg" alt="Inversor SOLTRONIX 600W Onda Modificada">
+                </div>
+                <div class="producto-contenido">
+                    <div class="producto-categoria">Inversores</div>
+                    <h3 class="producto-nombre">Inversor SOLTRONIX 600W Onda Modificada 12VDC / 230VAC</h3>
+                    <p class="producto-descripcion">
+                        Inversor SOLTRONIX de 600W con onda modificada para uso básico.
+                        Ideal para pequeños consumos y aplicaciones sencillas.
+                    </p>
+                    <ul class="producto-caracteristicas"> 
+                        <li>Potencia: 600W</li>
+                        <li>Onda senoidal modificada</li>
+                        <li>Entrada: 12VDC</li>
+                        <li>Salida AC doméstica</li>
+                    </ul>
+                    <div class="producto-footer">
+                        <div>
+                            <div class="producto-precio">S/. 150</div>
+                        </div>
+                        <button class="producto-boton">Consultar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Batería GEL EXOR 12V 200Ah -->
+            <div class="producto-card" data-categoria="baterias">
+                <div class="producto-imagen">
+                    <img src="public/images/producto16.jpeg" alt="Batería GEL EXOR 12V 200Ah">
+                </div>
+                <div class="producto-contenido">
+                    <div class="producto-categoria">Baterías</div>
+                    <h3 class="producto-nombre">Batería GEL EXOR 12V 200Ah</h3>
+                    <p class="producto-descripcion">
+                        Batería GEL EXOR 12V 200Ah para almacenamiento de energía solar y respaldo.
+                        Diseño sellado, estable y libre de mantenimiento.
+                    </p>
+                    <ul class="producto-caracteristicas"> 
+                        <li>Voltaje: 12V</li>
+                        <li>Capacidad: 200Ah</li>
+                        <li>Tecnología: GEL</li>
+                        <li>Uso solar y respaldo</li>
+                    </ul>
+                    <div class="producto-footer">
+                        <div>
+                            <div class="producto-precio">S/. 1100</div>
+                        </div>
+                        <button class="producto-boton">Consultar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel Solar RENE PV 450W Mono PERC -->
+            <div class="producto-card" data-categoria="paneles">
+                <div class="producto-imagen">
+                    <img src="public/images/producto17.jpeg" alt="Panel solar RENE PV 450W Mono PERC">
+                </div>
+                <div class="producto-contenido">
+                    <div class="producto-categoria">Paneles Solares</div>
+                    <h3 class="producto-nombre">Panel Solar RENE PV 450W Mono PERC</h3>
+                    <p class="producto-descripcion">
+                        Panel solar RENE PV de 450W con tecnología Mono PERC.
+                        Adecuado para sistemas fotovoltaicos residenciales y comerciales.
+                    </p>
+                    <ul class="producto-caracteristicas"> 
+                        <li>Potencia: 450W</li>
+                        <li>Tecnología: Mono PERC</li>
+                        <li>Marca: RENE PV</li>
+                        <li>Uso fotovoltaico</li>
+                    </ul>
+                    <div class="producto-footer">
+                        <div>
+                            <div class="producto-precio">S/. 450</div>
+                        </div>
+                        <button class="producto-boton">Consultar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controlador de Carga PWM LDSOLAR 30A -->
+            <div class="producto-card" data-categoria="accesorios">
+                <div class="producto-imagen">
+                    <img src="public/images/producto18.jpeg" alt="Controlador de carga PWM LDSOLAR 30A">
+                </div>
+                <div class="producto-contenido">
+                    <div class="producto-categoria">Accesorios</div>
+                    <h3 class="producto-nombre">Controlador de Carga PWM LDSOLAR 30A</h3>
+                    <p class="producto-descripcion">
+                        Controlador de carga solar PWM LDSOLAR de 30A con pantalla LCD.
+                        Ideal para regular y proteger sistemas solares básicos.
+                    </p>
+                    <ul class="producto-caracteristicas"> 
+                        <li>Corriente: 30A</li>
+                        <li>Tecnología PWM</li>
+                        <li>Pantalla LCD</li>
+                        <li>Uso solar</li>
+                    </ul>
+                    <div class="producto-footer">
+                        <div>
+                            <div class="producto-precio">S/. 100</div>
+                        </div>
+                        <button class="producto-boton">Consultar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conversor ELC 1500W 12VDC / 220VAC -->
+            <div class="producto-card" data-categoria="inversores">
+                <div class="producto-imagen">
+                    <img src="public/images/producto19.jpeg" alt="Conversor ELC 1500W 12VDC 220VAC">
+                </div>
+                <div class="producto-contenido">
+                    <div class="producto-categoria">Inversores</div>
+                    <h3 class="producto-nombre">Conversor ELC 1500W 12VDC / 220VAC</h3>
+                    <p class="producto-descripcion">
+                        Conversor ELC de 1500W para transformar 12VDC a 220VAC.
+                        Ideal para aplicaciones eléctricas y sistemas de respaldo.
+                    </p>
+                    <ul class="producto-caracteristicas"> 
+                        <li>Potencia: 1500W</li>
+                        <li>Entrada: 12VDC</li>
+                        <li>Salida: 220VAC</li>
+                        <li>Fabricación nacional</li>
+                    </ul>
+                    <div class="producto-footer">
+                        <div>
+                            <div class="producto-precio">S/. 450</div>
+                        </div>
+                        <button class="producto-boton">Consultar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Batería AGM RITAR 12V 150Ah -->
+            <div class="producto-card" data-categoria="baterias">
+                <div class="producto-imagen">
+                    <img src="public/images/producto20.jpeg" alt="Batería AGM RITAR 12V 150Ah">
+                </div>
+                <div class="producto-contenido">
+                    <div class="producto-categoria">Baterías</div>
+                    <h3 class="producto-nombre">Batería AGM RITAR 12V 150Ah</h3>
+                    <p class="producto-descripcion">
+                        Batería AGM RITAR 12V 150Ah para almacenamiento de energía y respaldo eléctrico.
+                        Diseño sellado, estable y libre de mantenimiento.
+                    </p>
+                    <ul class="producto-caracteristicas"> 
+                        <li>Voltaje: 12V</li>
+                        <li>Capacidad: 150Ah</li>
+                        <li>Tecnología: AGM</li>
+                        <li>Uso solar y respaldo</li>
+                    </ul>
+                    <div class="producto-footer">
+                        <div>
+                            <div class="producto-precio">S/. 800</div>
+                        </div>
+                        <button class="producto-boton">Consultar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inversor ON GRID MUST 6000W 500V MPPT -->
+            <div class="producto-card" data-categoria="inversores">
+                <div class="producto-imagen">
+                    <img src="public/images/producto21.jpeg" alt="Inversor ON GRID MUST 6000W 500V MPPT">
+                </div>
+                <div class="producto-contenido">
+                    <div class="producto-categoria">Inversores</div>
+                    <h3 class="producto-nombre">Inversor ON GRID MUST 6000W 500V MPPT</h3>
+                    <p class="producto-descripcion">
+                        Inversor ON GRID MUST de 6000W con controlador MPPT y entrada hasta 500V.
+                        Diseñado para sistemas fotovoltaicos conectados a red.
+                    </p>
+                    <ul class="producto-caracteristicas"> 
+                        <li>Potencia: 6000W</li>
+                        <li>Tipo: ON GRID</li>
+                        <li>Entrada FV: hasta 500V</li>
+                        <li>Controlador MPPT</li>
+                    </ul>
+                    <div class="producto-footer">
+                        <div>
+                            <div class="producto-precio">S/. 2,800</div>
+                        </div>
+                        <button class="producto-boton">Consultar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conversor ELC 300W 12VDC / 230VAC -->
+            <div class="producto-card" data-categoria="inversores">
+                <div class="producto-imagen">
+                    <img src="public/images/producto22.jpeg" alt="Conversor ELC 300W 12VDC 230VAC">
+                </div>
+                <div class="producto-contenido">
+                    <div class="producto-categoria">Inversores</div>
+                    <h3 class="producto-nombre">Conversor ELC 300W 12VDC / 230VAC</h3>
+                    <p class="producto-descripcion">
+                        Conversor ELC de 300W para transformar 12VDC a 230VAC.
+                        Ideal para pequeños consumos y uso portátil.
+                    </p>
+                    <ul class="producto-caracteristicas"> 
+                        <li>Potencia: 300W</li>
+                        <li>Entrada: 12VDC</li>
+                        <li>Salida: 230VAC</li>
+                        <li>Fabricación nacional</li>
+                    </ul>
+                    <div class="producto-footer">
+                        <div>
+                            <div class="producto-precio">S/. 120</div>
+                        </div>
+                        <button class="producto-boton">Consultar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conversor ELC 600W 12VDC / 220VAC -->
+            <div class="producto-card" data-categoria="inversores">
+                <div class="producto-imagen">
+                    <img src="public/images/producto23.jpeg" alt="Conversor ELC 600W 12VDC 220VAC">
+                </div>
+                <div class="producto-contenido">
+                    <div class="producto-categoria">Inversores</div>
+                    <h3 class="producto-nombre">Conversor ELC 600W 12VDC / 220VAC</h3>
+                    <p class="producto-descripcion">
+                        Conversor ELC de 600W para transformar 12VDC a 220VAC.
+                        Ideal para consumos medios y uso portátil.
+                    </p>
+                    <ul class="producto-caracteristicas"> 
+                        <li>Potencia: 600W</li>
+                        <li>Entrada: 12VDC</li>
+                        <li>Salida: 220VAC</li>
+                        <li>Fabricación nacional</li>
+                    </ul>
+                    <div class="producto-footer">
+                        <div>
+                            <div class="producto-precio">S/. 180</div>
+                        </div>
+                        <button class="producto-boton">Consultar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controlador de Carga PWM LDSOLAR 20A -->
+            <div class="producto-card" data-categoria="accesorios">
+                <div class="producto-imagen">
+                    <img src="public/images/producto24.jpeg" alt="Controlador de carga PWM LDSOLAR 20A">
+                </div>
+                <div class="producto-contenido">
+                    <div class="producto-categoria">Accesorios</div>
+                    <h3 class="producto-nombre">Controlador de Carga PWM LDSOLAR 20A</h3>
+                    <p class="producto-descripcion">
+                        Controlador de carga solar PWM LDSOLAR de 20A con pantalla LCD.
+                        Ideal para sistemas solares pequeños y medianos.
+                    </p>
+                    <ul class="producto-caracteristicas"> 
+                        <li>Corriente: 20A</li>
+                        <li>Tecnología PWM</li>
+                        <li>Pantalla LCD</li>
+                        <li>Uso solar</li>
+                    </ul>
+                    <div class="producto-footer">
+                        <div>
+                            <div class="producto-precio">S/. 70</div>
+                        </div>
+                        <button class="producto-boton">Consultar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel Solar RENEPV 150W Monocristalino -->
+            <div class="producto-card" data-categoria="paneles">
+                <div class="producto-imagen">
+                    <img src="public/images/producto25.jpeg" alt="Panel solar RENEPV 150W monocristalino">
+                </div>
+                <div class="producto-contenido">
+                    <div class="producto-categoria">Paneles Solares</div>
+                    <h3 class="producto-nombre">Panel Solar RENEPV 150W Monocristalino</h3>
+                    <p class="producto-descripcion">
+                        Panel solar RENEPV de 150W monocristalino para sistemas fotovoltaicos.
+                        Ideal para instalaciones pequeñas y portátiles.
+                    </p>
+                    <ul class="producto-caracteristicas"> 
+                        <li>Potencia: 150W</li>
+                        <li>Tecnología: Monocristalino</li>
+                        <li>Marca: RENEPV</li>
+                        <li>Uso fotovoltaico</li>
+                    </ul>
+                    <div class="producto-footer">
+                        <div>
+                            <div class="producto-precio">S/. 250</div>
+                        </div>
+                        <button class="producto-boton">Consultar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Batería AGM RITAR 12V 100Ah -->
+            <div class="producto-card" data-categoria="baterias">
+                <div class="producto-imagen">
+                    <img src="public/images/producto26.jpeg" alt="Batería AGM RITAR 12V 100Ah">
+                </div>
+                <div class="producto-contenido">
+                    <div class="producto-categoria">Baterías</div>
+                    <h3 class="producto-nombre">Batería AGM RITAR 12V 100Ah</h3>
+                    <p class="producto-descripcion">
+                        Batería AGM RITAR 12V 100Ah para almacenamiento de energía y respaldo eléctrico.
+                        Diseño sellado y libre de mantenimiento.
+                    </p>
+                    <ul class="producto-caracteristicas"> 
+                        <li>Voltaje: 12V</li>
+                        <li>Capacidad: 100Ah</li>
+                        <li>Tecnología: AGM</li>
+                        <li>Uso solar y respaldo</li>
+                    </ul>
+                    <div class="producto-footer">
+                        <div>
+                            <div class="producto-precio">S/. 550</div>
+                        </div>
+                        <button class="producto-boton">Consultar</button>
+                    </div>
+                </div>
+            </div>
+ </div>
+  </div>
+
+  <button class="prod-nav prod-next" aria-label="Siguiente">
+    <i class="fa-solid fa-chevron-right"></i>
+  </button>
+</div>
+
+<div class="productos-pager" id="productosPager"></div>
         </div>
     </section>
 
@@ -1351,19 +1938,10 @@
                 <img src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=400&h=300&fit=crop" alt="Proyecto 1">
             </div>
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1514632776622-658c47fe1da1?w=400&h=300&fit=crop" alt="Proyecto 2">
+                <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=400&h=300&fit=crop" alt="Proyecto 2">
             </div>
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1559027615-cd2628902d4a?w=400&h=300&fit=crop" alt="Proyecto 3">
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop" alt="Proyecto 4">
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=400&h=300&fit=crop" alt="Proyecto 5">
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop" alt="Proyecto 6">
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop" alt="Proyecto 3">
             </div>
         </div>
     </section>
@@ -1379,11 +1957,11 @@
                 <h3>Contáctanos</h3>
                 <div class="info-item">
                     <h4>📍 Dirección</h4>
-                    <p>Av. Principal 123, Lima, Perú</p>
+                    <p>JR PARURO 1322 LIMA - LIMA - LIMA</p>
                 </div>
                 <div class="info-item">
-                    <h4>📞 Teléfono</h4>
-                    <p>+51 (1) 2345-6789</p>
+                    <h4>📞 Celular</h4>
+                    <p>+51 947 239 146</p>
                 </div>
                 <div class="info-item">
                     <h4>📧 Email</h4>
@@ -1571,49 +2149,140 @@
         //     hero.style.transform = `translateY(${scrollPosition * 0.3}px)`;
         // });
 
-        // Filtros de productos
+        // ==================== PRODUCTOS: FILTRO + CARRUSEL (8 por página) ====================
+        (function productosFiltroCarrusel() {
+        const track = document.getElementById('productosTrack');
+        if (!track) return;
+
+        const prevBtn = document.querySelector('.prod-prev');
+        const nextBtn = document.querySelector('.prod-next');
+        const pager = document.getElementById('productosPager');
         const filterButtons = document.querySelectorAll('.filtro-btn');
-        const productCards = document.querySelectorAll('.producto-card');
 
-        filterButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                // Remove active class from all buttons
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                // Add active class to clicked button
-                this.classList.add('active');
+        // Lista MAESTRA (no se pierde aunque reconstruyamos páginas)
+        const ALL = Array.from(document.querySelectorAll('#productosTrack .producto-card'));
 
-                const filter = this.getAttribute('data-filter');
+        let currentPage = 0;
+        let perPage = getPerPage();
+        let pagesCount = 0;
 
-                productCards.forEach(card => {
-                    // Reset styles before applying new ones for smooth transitions
-                    card.style.opacity = '0';
-                    card.style.transform = 'scale(0.9)';
-                    card.style.display = 'none';
+        function getPerPage() {
+            if (window.matchMedia('(max-width: 480px)').matches) return 1;  // celular real
+            if (window.matchMedia('(max-width: 768px)').matches) return 2;  // móviles grandes
+            return 8; // desktop
+        }
 
-                    setTimeout(() => {
-                        if (filter === 'todos') {
-                            card.style.display = 'flex';
-                            card.style.opacity = '1';
-                            card.style.transform = 'scale(1)';
-                        } else {
-                            const categoria = card.getAttribute('data-categoria');
-                            if (categoria === filter) {
-                                card.style.display = 'flex';
-                                card.style.opacity = '1';
-                                card.style.transform = 'scale(1)';
-                            }
-                        }
-                    }, 10); // Small delay to allow initial reset styles to apply
-                });
+        function chunk(arr, size) {
+            const out = [];
+            for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
+            return out;
+        }
+
+        function buildPager(total) {
+            if (!pager) return;
+            pager.innerHTML = '';
+            for (let i = 0; i < total; i++) {
+            const dot = document.createElement('button');
+            dot.className = 'pager-dot' + (i === currentPage ? ' active' : '');
+            dot.addEventListener('click', () => goTo(i));
+            pager.appendChild(dot);
+            }
+        }
+
+        function updateNav() {
+            if (prevBtn) prevBtn.disabled = currentPage <= 0;
+            if (nextBtn) nextBtn.disabled = currentPage >= pagesCount - 1;
+
+            if (pager) {
+            pager.querySelectorAll('.pager-dot').forEach((d, idx) => {
+                d.classList.toggle('active', idx === currentPage);
+            });
+            }
+        }
+
+        function goTo(pageIndex) {
+            currentPage = Math.max(0, Math.min(pageIndex, pagesCount - 1));
+            track.style.transform = `translateX(-${currentPage * 100}%)`;
+            updateNav();
+        }
+
+        function render(cards) {
+            // limpia track y reconstruye páginas
+            track.innerHTML = '';
+            perPage = getPerPage();
+
+            const groups = chunk(cards, perPage);
+
+            groups.forEach(group => {
+            const page = document.createElement('div');
+            page.className = 'productos-page';
+
+            const grid = document.createElement('div');
+            grid.className = 'productos-grid-page';
+
+            group.forEach(card => grid.appendChild(card));
+            page.appendChild(grid);
+            track.appendChild(page);
+            });
+
+            pagesCount = groups.length || 1;
+            currentPage = 0;
+
+            buildPager(groups.length);
+            goTo(0);
+        }
+
+        function applyFilter(filter) {
+            const filtered =
+            filter === 'todos'
+                ? ALL
+                : ALL.filter(card => (card.getAttribute('data-categoria') || '') === filter);
+
+            // Importante: reinsertamos desde la lista maestra (evita “desaparecidos”)
+            render(filtered);
+        }
+
+        // Flechas
+        prevBtn?.addEventListener('click', () => goTo(currentPage - 1));
+        nextBtn?.addEventListener('click', () => goTo(currentPage + 1));
+
+        // Botones de filtro
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', function () {
+            filterButtons.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+
+            const filter = this.getAttribute('data-filter') || 'todos';
+            applyFilter(filter);
             });
         });
+
+        // Inicial
+        applyFilter('todos');
+
+        // Rebuild si cambia móvil/desktop (4 <-> 8)
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+            const newPerPage = getPerPage();
+            if (newPerPage !== perPage) {
+                // aplicar filtro activo actual
+                const active = document.querySelector('.filtro-btn.active')?.getAttribute('data-filter') || 'todos';
+                applyFilter(active);
+            }
+            }, 150);
+        });
+        })();
+
+
 
         // Product button actions
         document.querySelectorAll('.producto-boton').forEach(button => {
             button.addEventListener('click', function() {
                 const productName = this.closest('.producto-card').querySelector('.producto-nombre').textContent;
                 // Replace XXXXXXXXXX with your actual WhatsApp number
-                const whatsappUrl = `https://wa.me/51XXXXXXXXX?text=Hola,%20me%20interesa%20el%20producto:%20${encodeURIComponent(productName)}`;
+                const whatsappUrl = `https://wa.me/51947239146?text=Hola,%20me%20interesa%20el%20producto:%20${encodeURIComponent(productName)}`;
                 window.open(whatsappUrl, '_blank');
             });
         });
@@ -1623,7 +2292,7 @@
         const whatsappBtn = document.querySelector('.whatsapp-btn');
         if (whatsappBtn && !whatsappBtn.classList.contains('whatsapp-float')) {
             whatsappBtn.classList.add('whatsapp-float');
-            whatsappBtn.href = "https://wa.me/51XXXXXXXXX?text=Hola,%20me%20interesa%20obtener%20información%20sobre%20sus%20servicios";
+            whatsappBtn.href = "https://wa.me/51947239146?text=Hola,%20me%20interesa%20obtener%20información%20sobre%20sus%20servicios";
             whatsappBtn.setAttribute('aria-label', 'Contactar por WhatsApp');
             whatsappBtn.classList.remove('whatsapp-btn'); // Remove old class
         }
