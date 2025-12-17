@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Producto | AUTOCÓNSUMO</title>
+    <meta name="description" content="Producto de AUTOCÓNSUMO" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="canonical" href="https://autoconsumo.com.pe/producto.html" />
+    <style>
+        /* estilos mínimos para el detalle (puedes moverlos a styles.css si quieres) */
+        .product-page { padding: 110px 5% 60px; max-width: 1200px; margin: 0 auto; }
+        .product-wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 30px; }
+        .product-cardx { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,.12); }
+        .product-img { height: 420px; background: #f1f5f9; }
+        .product-img img { width: 100%; height: 100%; object-fit: cover; }
+        .product-infox { padding: 26px; }
+        .product-back { display:inline-block; margin-bottom: 16px; text-decoration:none; color:#0066cc; font-weight:600; }
+        .product-title { font-size: 2rem; margin: 8px 0 10px; }
+        .product-cat { font-size:.85rem; letter-spacing:1px; text-transform:uppercase; color:#2196F3; font-weight:700; }
+        .product-price { font-size: 2rem; font-weight:800; margin: 14px 0; }
+        .product-old { color:#999; text-decoration:line-through; margin-right:10px; }
+        .product-desc { color:#64748b; line-height:1.7; margin: 12px 0 18px; }
+        .product-feats { list-style:none; padding:0; margin:0 0 18px; }
+        .product-feats li{ padding:6px 0 6px 26px; position:relative; color:#334155; }
+        .product-feats li:before{ content:"✓"; position:absolute; left:0; color:#22c55e; font-weight:900; }
+        .btn-wsp { display:inline-flex; align-items:center; gap:10px; padding: 12px 18px; border-radius: 999px;
+                background: linear-gradient(135deg, #25d366, #20a652); color:#fff; text-decoration:none; font-weight:800; }
+        @media (max-width: 900px){ .product-wrap{ grid-template-columns:1fr; } .product-img{ height: 320px; } }
+    </style>
+</head>
+
+<body>
+    <!-- reutiliza tu navbar si quieres copiarla tal cual -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-container">
+        <img src="public/images/logo.png" alt="AUTOCÓNSUMO Logo" class="logo">
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html#inicio">Inicio</a></li>
+            <li><a href="index.html#servicios">Servicios</a></li>
+            <li><a href="index.html#productos">Productos</a></li>
+            <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <main class="product-page">
+        <a class="product-back" href="index.html#productos">← Volver al catálogo</a>
+
+        <!-- ✅ FALLBACK SEO (visible si el JS falla) -->
+        <section id="seoFallback" style="margin: 18px 0 22px;">
+            <h1 style="margin:0 0 8px;">Productos de energía solar en Perú | AUTOCÓNSUMO</h1>
+            <p style="margin:0; color:#64748b; line-height:1.7;">
+                Catálogo de paneles solares, reflectores solares, inversores y baterías para sistemas fotovoltaicos.
+                Consulta disponibilidad y cotiza por WhatsApp.
+            </p>
+        </section>
+        
+        <div class="product-wrap">
+        <div class="product-cardx">
+            <div class="product-img">
+            <img id="pImg" src="" alt="">
+            </div>
+        </div>
+
+        <div class="product-cardx">
+            <div class="product-infox">
+            <div class="product-cat" id="pCat"></div>
+            <h1 class="product-title" id="pName"></h1>
+
+            <div class="product-price">
+                <span class="product-old" id="pOld" style="display:none;"></span>
+                <span id="pPrice"></span>
+            </div>
+
+            <p class="product-desc" id="pDesc"></p>
+
+            <ul class="product-feats" id="pFeats"></ul>
+
+            <a class="btn-wsp" id="pWsp" target="_blank" rel="noopener">
+                <i class="fab fa-whatsapp"></i> Consultar por WhatsApp
+            </a>
+            </div>
+        </div>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="productos-data.js"></script>
+    <script>
+        // menú hamburguesa
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger?.addEventListener('click', () => navLinks.classList.toggle('active'));
+
+        // leer slug
+        const params = new URLSearchParams(location.search);
+        const slug = params.get("slug");
+
+        const p = (window.PRODUCTOS || []).find(x => x.slug === slug);
+
+        if (!p) {
+        document.title = "Producto no encontrado | AUTOCÓNSUMO";
+        document.querySelector(".product-wrap").innerHTML =
+            `<div class="product-cardx"><div class="product-infox">
+            <h1 class="product-title">Producto no encontrado</h1>
+            <p class="product-desc">Vuelve al catálogo y selecciona un producto válido.</p>
+            <a class="cta-button" href="index.html#productos" style="display:inline-block;">Volver</a>
+            </div></div>`;
+        } else {
+            // ✅ quita fallback cuando hay producto
+            document.getElementById("seoFallback")?.remove();
+            // set meta/seo básico
+            document.title = `${p.nombre} | AUTOCÓNSUMO`;
+            const desc = document.querySelector('meta[name="description"]');
+        if (desc) desc.setAttribute("content", p.descripcion || p.nombre);
+
+        // render
+        document.getElementById("pImg").src = p.imagen;
+        document.getElementById("pImg").alt = p.nombre;
+
+        document.getElementById("pCat").textContent = p.categoria;
+        document.getElementById("pName").textContent = p.nombre;
+        document.getElementById("pDesc").textContent = p.descripcion || "";
+
+        document.getElementById("pPrice").textContent = `S/. ${p.precio}`;
+
+        if (p.precioAnterior) {
+            const old = document.getElementById("pOld");
+            old.style.display = "inline";
+            old.textContent = `S/. ${p.precioAnterior}`;
+        }
+
+        const feats = document.getElementById("pFeats");
+        feats.innerHTML = "";
+        (p.caracteristicas || []).forEach(f => {
+            const li = document.createElement("li");
+            li.textContent = f;
+            feats.appendChild(li);
+        });
+
+        const wsp = document.getElementById("pWsp");
+        const msg = `Hola, me interesa el producto: ${p.nombre}`;
+        wsp.href = `https://wa.me/51947239146?text=${encodeURIComponent(msg)}`;
+        }
+    </script>
+</body>
+</html>
